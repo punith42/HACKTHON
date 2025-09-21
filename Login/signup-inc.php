@@ -1,14 +1,14 @@
 <?php
 
-if (isset($_POST["submit"])){
-    
-    $email = $_POST["email"];
-    $username = $_POST["uid"];
-    $pwd = $_POST["pwd"];
-    $pwdconfirm = $_POST["pwdconfirm"];
+if (isset($_POST["submit"])){    
+    $email = $_POST["email"];    
+    $username = $_POST["uid"];    
+    $pwd = $_POST["pwd"];    
+    $pwdconfirm = $_POST["pwdconfirm"]; 
 
-    require_once 'dbh-inc.php';
-    require_once 'functions-inc.php';
+    // Use __DIR__ so includes are resolved relative to this file's directory
+    require_once __DIR__ . '/dbh-inc.php';
+    require_once __DIR__ . '/functions-inc.php';
 
     if(emptyInputSignup($email, $username, $pwd, $pwdconfirm) !== false){
         header("location: ../mainLogin/animlogin.php?error=emptyinput");
@@ -36,7 +36,6 @@ if (isset($_POST["submit"])){
     }
 
     createUser($conn, $email, $username, $pwd);
-
 }
 else{
     header("location: ../mainLogin/animlogin.php");
